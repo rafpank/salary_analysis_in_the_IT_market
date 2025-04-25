@@ -41,3 +41,6 @@ Initially, raw scraped data may be stored in CSV files for simplicity and ease o
 
 ### Clone the repository
 
+git clone https://github.com/rafpank/salary_analysis_in_the_IT_market.git
+cd salary_analysis_in_the_IT_market
+
