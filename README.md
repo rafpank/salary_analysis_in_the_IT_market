@@ -44,3 +44,24 @@ Initially, raw scraped data may be stored in CSV files for simplicity and ease o
 git clone https://github.com/rafpank/salary_analysis_in_the_IT_market.git
 cd salary_analysis_in_the_IT_market
 
+
+### (Future) Installation and Setup
+
+Instructions for environment setup, dependency installation, and configuration will be added as the project develops.
+
+## Contribution
+
+Contributions, suggestions, and feedback are very welcome as the project evolves. Feel free to open issues or pull requests.
+
+## License
+
+This project is currently under development and does not yet have a license. License details will be added in the future.
+
+---
+
+**Repository link:** [https://github.com/rafpank/salary_analysis_in_the_IT_market](https://github.com/rafpank/salary_analysis_in_the_IT_market)
+
+---
+
+If you have any questions or want to collaborate, please contact me via GitHub.
+
