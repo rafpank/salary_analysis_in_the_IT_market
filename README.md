@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains the **project plan** and initial setup for a data science tool aimed at analyzing IT job market salaries based on job offers from platforms such as [NoFluffJobs](https://nofluffjobs.com/pl), RocketJobs, and LinkedIn. 
+This repository contains the **project plan** and initial setup for a data science tool aimed at analyzing IT job market salaries based on job offers from platforms such as [Justjoin.it](https://justjoin.it), RocketJobs, and LinkedIn. 
 
 The goal of this project is to help employers understand the current salary landscape by collecting and analyzing job offer data, including required skills, technologies, locations (including remote options), and to provide data-driven recommendations on competitive salary offers that attract talent without overpaying.
 
