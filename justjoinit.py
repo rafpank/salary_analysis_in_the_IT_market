@@ -1,27 +1,22 @@
-"scrapping justjoin.it"
+"""scrapping justjoin.it"""
 import requests
 from bs4 import BeautifulSoup
-
-HEADERS = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-        "Accept-Language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7"
-    }
-
-# URL = 'https://nofluffjobs.com/pl/slask'
-START_URL = 'https://justjoin.it/job-offers/slask'
+import csv
+import json
+from datetime import datetime
+import time
+import re
 
 
-def get_offer_links(page_url):
-    response = requests.get(page_url, headers=HEADERS)
-
-
-def page_dowlanding(url: str):
-    response = requests.get(url, headers=HEADERS)
-    return response
-
-def main():
-    print(page_dowlanding(START_URL))
-
-
-if __name__ == '__main__':
-    main()
+class JustJoinScraper:
+    def __init__(self):
+        self.headers = {
+             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "Accept-Language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7",
+            "Accept-Encoding": "gzip, deflate, br",
+            "DNT": "1",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",                        
+                        }
+        
