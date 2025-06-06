@@ -57,3 +57,8 @@ class JustJoinScraper:
             # Job Title in h3
             title_element = offer_element.find('h3', class_ = 'css=1gehlh0')
             offer_data['title'] = title_element.get_text(strip=True) if title_element else 'No title'
+
+
+        except Exception as e:
+            print(f"Błąd podczas parsowania oferty: {e}")
+            return None
