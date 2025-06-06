@@ -19,4 +19,20 @@ class JustJoinScraper:
             "Connection": "keep-alive",
             "Upgrade-Insecure-Requests": "1",                        
                         }
-        
+        self.base_url = "https//justjoin.it"
+
+
+    def get_page_content(self, url: str) -> str:
+        try:
+            print(f"Downloading: {url}")
+            response = requests.get(url, headers=self.headers)
+
+            if response.status_code == 200:
+                return response.text
+            else:
+                print(f"HTTP error: {response.status_code}")
+                None
+
+        except Exception as e:
+            print(f"Error while loading page: {e}")
+            return None
