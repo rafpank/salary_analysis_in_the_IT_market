@@ -36,3 +36,24 @@ class JustJoinScraper:
         except Exception as e:
             print(f"Error while loading page: {e}")
             return None
+        
+
+    def parse_offer_card(self, offer_element: str):
+        """
+        Parses a single offer card from HTML
+        """
+        try:
+            offer_data = {}
+
+            link_element = offer_element
+            if link_element.name == 'a' and link_element.get('href'):
+                relative_link = link_element.get('href')
+                offer_data['link'] = f"{self.base_url}{relative_link}"
+                offer_data['slug'] = relative_link.replace('/job-offer/','')
+            else:
+                offer_data['link'] = 'Ther are no links'
+                offer_data["slug"] = ''
+
+            # Job Title in h3
+            title_element = offer_element.find('h3', class_ = 'css=1gehlh0')
+            offer_data['title'] = title_element.get_text(strip=True) if title_element else 'No title'
