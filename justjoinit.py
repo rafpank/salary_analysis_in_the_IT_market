@@ -59,6 +59,16 @@ class JustJoinScraper:
             offer_data['title'] = title_element.get_text(strip=True) if title_element else 'No title'
 
 
+            # Company  - in span (building)
+            company_element = offer_element.find('svg', {'data-testid': 'ApartmentRoundedIcon'})
+            if company_element:
+                company_span = company_element.find_next('span')
+                offer_data['company'] = company_span.get_text(strip=True) if company_span else 'No company name'
+            else:
+                offer_data['company'] = 'No company name'
+
+            
+
         except Exception as e:
             print(f"Błąd podczas parsowania oferty: {e}")
             return None
