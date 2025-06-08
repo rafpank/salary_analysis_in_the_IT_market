@@ -59,7 +59,7 @@ class JustJoinScraper:
             offer_data['title'] = title_element.get_text(strip=True) if title_element else 'No title'
 
 
-            # Company  - in span (building)
+            # Company  - in span (building icon)
             company_element = offer_element.find('svg', {'data-testid': 'ApartmentRoundedIcon'})
             if company_element:
                 company_span = company_element.find_next('span')
@@ -67,7 +67,18 @@ class JustJoinScraper:
             else:
                 offer_data['company'] = 'No company name'
 
-            
+            # Location - in span with location icon
+            location_element = offer_element.find('svg', {'data-testid': 'PlaceOutlinedIcon'})
+            if location_element:
+                location_container = location_element.find_next('div', class_='css-vc0lhh')
+                if location_container: 
+                    location_span = location_container.find('span', class_='css=1o4wo1x')
+                    offer_data['location'] = location_span.get_text(strip=True) if location_span else 'No location'
+                else:
+                    offer_data['location'] = 'No location'
+            else:
+                offer_data['location'] = 'No location'
+        
 
         except Exception as e:
             print(f"Błąd podczas parsowania oferty: {e}")
