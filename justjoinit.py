@@ -79,16 +79,16 @@ class JustJoinScraper:
             else:
                 offer_data['location'] = 'No location'
 
-        # Work mode (remte/office)
-        remote_element = offer_element.find('span', class_='css-1uevhcf')
-        if remote_element:
-            offer_data['workplace_type'] = remote_element.get_text(strip=True)
-        else:
-            # Checking if is "Fully remote"
-            remote_tag = offer_element.find('div', string='Fully remote')
-            offer_data['workplace_type'] = 'Fully remote' if remote_tag else 'Office'
+            # Work mode (remte/office)
+            remote_element = offer_element.find('span', class_='css-1uevhcf')
+            if remote_element:
+                offer_data['workplace_type'] = remote_element.get_text(strip=True)
+            else:
+                # Checking if is "Fully remote"
+                remote_tag = offer_element.find('div', string='Fully remote')
+                offer_data['workplace_type'] = 'Fully remote' if remote_tag else 'Office'
 
 
         except Exception as e:
-            print(f"Błąd podczas parsowania oferty: {e}")
+            print(f"Error while parsing the offer: {e}")
             return None
