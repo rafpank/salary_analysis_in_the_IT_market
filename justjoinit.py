@@ -84,9 +84,26 @@ class JustJoinScraper:
             if remote_element:
                 offer_data['workplace_type'] = remote_element.get_text(strip=True)
             else:
-                # Checking if is "Fully remote"
+                # Checking if is "Fully remote" badge
                 remote_tag = offer_element.find('div', string='Fully remote')
                 offer_data['workplace_type'] = 'Fully remote' if remote_tag else 'Office'
+
+            # Salary 
+            salary_container = offer_element.find('div', class_='css-18ypp16')
+            if salary_container:
+                salary_spans = salary_container.find_all('span')
+                if len(salary_spans) <= 3:
+                    # First span - amount from, second span - amount to, third span - currency/period
+                    salary_from = salary_spans[0].get_text(strip=True)
+                    salary_to = salary_spans[1].get_text(strip=True)
+                    currency_period = salary_spans[2].get_text(strip=True)
+                    offer_data['salary_info'] = f"{salary_from} - {salary_to} {currency_period}"
+                else:
+                    offer_data['salary_info'] = salary_container.get_text(strip=True)
+            else:
+                offer_data['salary_info'] = 'No information about salary'
+
+            # Skills in skill tags
 
 
         except Exception as e:
