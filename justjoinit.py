@@ -114,7 +114,15 @@ class JustJoinScraper:
             offer_data['reuired_skills'] = skills
 
             # Is this a new offer
+            new_tag = offer_element.find('div', class_='css-jikuwi', string='New')
+            offer_data['is_new'] = bool(new_tag)
 
+            # Company logo
+            logo_img = offer_element.find('img', id='offerCardCompanyLogo')
+            offer_data['company_logo'] = logo_img.get('src') if logo_img else ''
+
+            return offer_data
+        
 
         except Exception as e:
             print(f"Error while parsing the offer: {e}")
