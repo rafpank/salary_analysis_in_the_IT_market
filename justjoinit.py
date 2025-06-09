@@ -104,6 +104,16 @@ class JustJoinScraper:
                 offer_data['salary_info'] = 'No information about salary'
 
             # Skills in skill tags
+            skills = []
+            skill_tags = offer_element.find_all('div', class_=re.compile(r'skill-tag-\d+'))
+            for skill_tag in skill_tags:
+                skill_div = skill_tag.find('div', class_='css-jikuwi')
+                if skill_div:
+                    skills.append(skill_div.get_text(strip=True))
+
+            offer_data['reuired_skills'] = skills
+
+            # Is this a new offer
 
 
         except Exception as e:
