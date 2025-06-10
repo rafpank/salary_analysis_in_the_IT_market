@@ -142,5 +142,23 @@ class JustJoinScraper:
             if not html_content:
                 print(f"Failed to download page {page}")
                 break
-            
+
+            soup = BeautifulSoup(html_content, 'html.parser')
+
+            # Finding all of offer cards
+            offer_cards =soup.find_all('a', class_='offer-card')
+
+            if not offer_cards:
+                print(f"No offer found on the site {page}")
+                print("I'm checking alternative selectors...")
+
+                alternative_selectors = [
+                    'a[href*="/job-offer/"]',
+                    '[data-testid="offer-card"]',
+                    '.job-offer-card',
+                    'div[class*="offer"]'
+                ]
+
+                
+
 
