@@ -176,10 +176,22 @@ class JustJoinScraper:
             print(f"{len(offer_cards)} has been found on page {page}")
 
             # Parsing all of offers
+            page_offers = []
+            for card in offer_cards:
+                offer = self.parse_offer_card(card)
+                if offer:
+                    page_offers.append(offer)
+                    all_offers.append(offer)
 
-            
+            print(f"Successfully parsed {len(page_offers)} offesrs from {page}")
 
+            if len(offer_cards) == 0:
+                break
 
+            # Delay between requests
+            time.sleep(2)
 
+        return all_offers
+    
 
-
+    
