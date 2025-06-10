@@ -159,6 +159,27 @@ class JustJoinScraper:
                     'div[class*="offer"]'
                 ]
 
-                
+                for selector in alternative_selectors:
+                    offer_cards = soup.select(selector)
+                    if offer_cards:
+                        print(f"Found {len(offer_cards)} offers using selector: {selector}")
+                        break
+
+                if not offer_cards:
+                    # Chceckin if the page loaded correctly
+                    if 'justjoin' in html_content.lower():
+                        print("The justjoin.it page loaded but no offers has been found")
+                        print("Display part of HTML")
+                        print(html_content[:1000])
+                    break
+
+            print(f"{len(offer_cards)} has been found on page {page}")
+
+            # Parsing all of offers
+
+            
+
+
+
 
 
