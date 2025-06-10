@@ -55,7 +55,7 @@ class JustJoinScraper:
                 offer_data["slug"] = ''
 
             # Job Title in h3
-            title_element = offer_element.find('h3', class_ = 'css=1gehlh0')
+            title_element = offer_element.find('h3', class_ = 'css-1gehlh0')
             offer_data['title'] = title_element.get_text(strip=True) if title_element else 'No title'
 
 
@@ -127,3 +127,20 @@ class JustJoinScraper:
         except Exception as e:
             print(f"Error while parsing the offer: {e}")
             return None
+        
+
+    def scrape_job_offers(self, location="slask", max_pages = 5):
+        all_offers = []
+
+        for page in range(1, max_pages + 1):
+            if page == 1:
+                url = f"{self.base_url}/job-offers/{location}"
+            else:
+                url = f"{self.base_url}/job-offers/{location}?page={page}"
+
+            html_content = self.get_page_content(url)
+            if not html_content:
+                print(f"Failed to download page {page}")
+                break
+            
+
