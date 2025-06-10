@@ -194,4 +194,5 @@ class JustJoinScraper:
         return all_offers
     
 
-    
+    def save_to_csv(self, offers, filename=None):
+        pass
