@@ -195,4 +195,9 @@ class JustJoinScraper:
     
 
     def save_to_csv(self, offers, filename=None):
-        pass
+        if not filename:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"justjoin_offers_{timestamp}.csv"
+
+        
+        
