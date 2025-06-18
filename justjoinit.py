@@ -200,4 +200,31 @@ class JustJoinScraper:
             filename = f"justjoin_offers_{timestamp}.csv"
 
         
+        if not offers:
+            print("There is no offers to be recorded")
+            return
         
+        try:
+            with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+                fieldnames = [
+                    'title', 'company', 'location', 'workplace_type', 
+                    'salary_info', 'required_skills', 'is_new', 'link', 'slug'
+                ]
+
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+
+                for offer in offers:
+                    csv_offer = offer.copy()
+                    csv_offer['required_skills'] = ', '.join(offer.get('required_skills', []))
+
+                    writer.writerow(csv_offer)
+
+            print(f"Saved{len(offers)} offers to the file: {filename}")
+            return filename
+        
+        except Exception as e:
+            print(f"An error occurred while saving to CSV: {e}")
+            return None
+            
+
