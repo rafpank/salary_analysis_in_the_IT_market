@@ -226,5 +226,20 @@ class JustJoinScraper:
         except Exception as e:
             print(f"An error occurred while saving to CSV: {e}")
             return None
+        
+
+    def save_to_json(self, offers, filename=None):
+        if not filename:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"justjoin_offers_{timestamp}.json"
+        
+        try:
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(offers, f, ensure_ascii=False, indent=2)
+            print(f"Full data has been saved to file: {filename}")
+            return filename
+        except Exception as e:
+            print(f"An error occurred while saving to JSON: {e}")
+            return None
             
 
