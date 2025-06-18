@@ -241,5 +241,9 @@ class JustJoinScraper:
         except Exception as e:
             print(f"An error occurred while saving to JSON: {e}")
             return None
+        
+
+    def print_offers_summary(self, offers):
+        pass
             
 
