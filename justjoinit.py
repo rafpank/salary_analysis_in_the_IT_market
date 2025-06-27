@@ -272,3 +272,14 @@ class JustJoinScraper:
 
             print("=== DEBUGGING THE WEBSITE STRUCTURE ===")
             print(f"Website title: {soup.title.string if soup.title else 'There is no title'}")
+
+            # Check various possible selectors
+            selectors_to_check = [
+                ('a.offer-card', 'Links with class offer_card'),
+                ('a[href*="/job-offer/"]', 'Links containing /job-offer/'),
+                ('h3', 'All h3 elements'),
+                ('[class*="offer"]', 'Elements with "offer" in class'),
+                ('[class*="job"]', 'Elements with "job" in class'),
+                ('[class*="card"]', 'Elements with "card" in class'),
+            ]
+            
