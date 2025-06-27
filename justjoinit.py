@@ -263,5 +263,12 @@ class JustJoinScraper:
 
         if len(offers) > 10:
             print(f"\n... and {len(offers) - 10} more offers")
-            
 
+    def debug_page_structure(self, url):
+        html_content = self.get_page_content(url)
+        if html_content:
+            soup = BeautifulSoup(html_content, 'html.parser')
+
+
+            print("=== DEBUGGING THE WEBSITE STRUCTURE ===")
+            print(f"Website title: {soup.title.string if soup.title else 'There is no title'}")
