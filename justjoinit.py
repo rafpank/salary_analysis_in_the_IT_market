@@ -244,6 +244,24 @@ class JustJoinScraper:
         
 
     def print_offers_summary(self, offers):
-        pass
+        if not offers: 
+            print("Ther is no offers to display")
+            return
+        
+        print(f"\n=== Summary of: {len(offers)} offers ===")
+
+        # Displays the first 10 offers
+
+        for i, offer in enumerate(offers[:10], 1):
+            print(f"\n{i}. {offer['title']}")
+            print(f"   Company: {offer['company']}")
+            print(f"   Location: {offer['location']}")
+            print(f"   Work mode: {offer['workplace_type']}")
+            print(f"   Salary: {offer['salary_info']}")
+            print(f"   Skills: {', '.join(offer.get('required_skills', []))}")
+            print(f"   Link: {offer['link']}")
+
+        if len(offers) > 10:
+            print(f"\n... and {len(offers) - 10} more offers")
             
 
