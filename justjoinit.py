@@ -290,4 +290,7 @@ class JustJoinScraper:
                 if elements and len(elements) <= 3:
                     for i, elem in enumerate(elements[:3]):
                         print(f"  {i+1}. {elem.name} - {elem.get('class', [])} - {elem.get_text(strip=True)[:100]}...")
-                        
+
+
+def main():
+    pass
