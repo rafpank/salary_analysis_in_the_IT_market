@@ -293,4 +293,14 @@ class JustJoinScraper:
 
 
 def main():
-    pass
+    scrpaper = JustJoinScraper()
+
+    # Checking structure of website
+    print("=== DEBUGGING PAGE STRUCTURE ===")
+
+
+    offers = scrpaper.scrape_job_offers(location='slask', max_pages=3)
+
+    # if offers:
+    #     # Display page summary
+        
