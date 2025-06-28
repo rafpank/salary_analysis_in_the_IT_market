@@ -312,4 +312,15 @@ def main():
         # saving to the files
         csv_file = scrpaper.save_to_csv(offers)
         json_file = scrpaper.save_to_json(offers)
+
+        print("\n=== COMPLETED ===")
+        print(f"Total downloaded {len(offers)} offers")
+        if csv_file:
+            print(f"CSV file: {csv_file}")
+        if json_file:
+            print(f"JSON file: {json_file}")
+
+        else:
+             print("Failed to download any listings")
+             print("Check debugging results above")
                 
