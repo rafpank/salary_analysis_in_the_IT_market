@@ -323,4 +323,8 @@ def main():
         else:
              print("Failed to download any listings")
              print("Check debugging results above")
+
+
+if __name__ == '__main__':
+    main()
                 
