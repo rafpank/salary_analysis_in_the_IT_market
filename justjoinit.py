@@ -297,10 +297,19 @@ def main():
 
     # Checking structure of website
     print("=== DEBUGGING PAGE STRUCTURE ===")
+    test_url = "http://justjoin.it/job-offers/slask"
+    scrpaper.debug_page_structure(test_url)
 
-
+    print("\n" + "="*50)
+    print("=== START DOWNLOADING OFFERS ===")
+    
     offers = scrpaper.scrape_job_offers(location='slask', max_pages=3)
 
-    # if offers:
-    #     # Display page summary
-        
+    if offers:
+        # Display page summary
+        scrpaper.print_offers_summary(offers)
+
+        # saving to the files
+        csv_file = scrpaper.save_to_csv(offers)
+        json_file = scrpaper.save_to_json(offers)
+                
