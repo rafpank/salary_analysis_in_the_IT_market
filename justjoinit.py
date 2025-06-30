@@ -117,9 +117,9 @@ class JustJoinScraper:
             new_tag = offer_element.find('div', class_='css-jikuwi', string='New')
             offer_data['is_new'] = bool(new_tag)
 
-            # Company logo
-            logo_img = offer_element.find('img', id='offerCardCompanyLogo')
-            offer_data['company_logo'] = logo_img.get('src') if logo_img else ''
+            # # Company logo
+            # logo_img = offer_element.find('img', id='offerCardCompanyLogo')
+            # offer_data['company_logo'] = logo_img.get('src') if logo_img else ''
 
             return offer_data
         
@@ -195,6 +195,9 @@ class JustJoinScraper:
     
 
     def save_to_csv(self, offers, filename=None):
+        # print(f"Debug - number of bids to be written: {len(offers)}")
+        # if offers:
+        #     print(f"Debug - first offer: {offers[0]}")
         if not filename:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"justjoin_offers_{timestamp}.csv"
@@ -220,7 +223,7 @@ class JustJoinScraper:
 
                     writer.writerow(csv_offer)
 
-            print(f"Saved{len(offers)} offers to the file: {filename}")
+            print(f"Saved {len(offers)} offers to the file: {filename}")
             return filename
         
         except Exception as e:
@@ -297,7 +300,7 @@ def main():
 
     # Checking structure of website
     print("=== DEBUGGING PAGE STRUCTURE ===")
-    test_url = "http://justjoin.it/job-offers/slask"
+    test_url = "https://justjoin.it/job-offers/slask"
     scraper.debug_page_structure(test_url)
 
     print("\n" + "="*50)
@@ -319,7 +322,6 @@ def main():
             print(f"CSV file: {csv_file}")
         if json_file:
             print(f"JSON file: {json_file}")
-
         else:
              print("Failed to download any listings")
              print("Check debugging results above")
