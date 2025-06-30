@@ -72,7 +72,7 @@ class JustJoinScraper:
             if location_element:
                 location_container = location_element.find_next('div', class_='css-vc0lhh')
                 if location_container: 
-                    location_span = location_container.find('span', class_='css=1o4wo1x')
+                    location_span = location_container.find('span', class_='css-1o4wo1x')
                     offer_data['location'] = location_span.get_text(strip=True) if location_span else 'No location'
                 else:
                     offer_data['location'] = 'No location'
@@ -92,7 +92,7 @@ class JustJoinScraper:
             salary_container = offer_element.find('div', class_='css-18ypp16')
             if salary_container:
                 salary_spans = salary_container.find_all('span')
-                if len(salary_spans) <= 3:
+                if len(salary_spans) >= 3:
                     # First span - amount from, second span - amount to, third span - currency/period
                     salary_from = salary_spans[0].get_text(strip=True)
                     salary_to = salary_spans[1].get_text(strip=True)
@@ -111,7 +111,7 @@ class JustJoinScraper:
                 if skill_div:
                     skills.append(skill_div.get_text(strip=True))
 
-            offer_data['reuired_skills'] = skills
+            offer_data['required_skills'] = skills
 
             # Is this a new offer
             new_tag = offer_element.find('div', class_='css-jikuwi', string='New')
@@ -293,25 +293,25 @@ class JustJoinScraper:
 
 
 def main():
-    scrpaper = JustJoinScraper()
+    scraper = JustJoinScraper()
 
     # Checking structure of website
     print("=== DEBUGGING PAGE STRUCTURE ===")
     test_url = "http://justjoin.it/job-offers/slask"
-    scrpaper.debug_page_structure(test_url)
+    scraper.debug_page_structure(test_url)
 
     print("\n" + "="*50)
     print("=== START DOWNLOADING OFFERS ===")
     
-    offers = scrpaper.scrape_job_offers(location='slask', max_pages=3)
+    offers = scraper.scrape_job_offers(location='slask', max_pages=3)
 
     if offers:
         # Display page summary
-        scrpaper.print_offers_summary(offers)
+        scraper.print_offers_summary(offers)
 
         # saving to the files
-        csv_file = scrpaper.save_to_csv(offers)
-        json_file = scrpaper.save_to_json(offers)
+        csv_file = scraper.save_to_csv(offers)
+        json_file = scraper.save_to_json(offers)
 
         print("\n=== COMPLETED ===")
         print(f"Total downloaded {len(offers)} offers")
